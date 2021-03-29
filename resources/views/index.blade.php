@@ -12,6 +12,7 @@ lists
         <th scope="col">Mail</th>
         <th scope="col">Indirizzo</th>
         <th scope="col">Immagine Profilo</th>
+        <th scope="col"> <a class="btn btn-primary" href="\post" role="button">Go to posts</a> </th>
       </tr>
     </thead>
     <tbody>

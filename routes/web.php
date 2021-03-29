@@ -24,3 +24,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/list', 'DashboardController@index');
+
+Route::resource('post', PostController::class);

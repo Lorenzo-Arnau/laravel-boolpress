@@ -11,6 +11,7 @@ Posts
         <th scope="col">Contenuto</th>
         <th scope="col">Nome Autore</th>
         <th scope="col"> <a class="btn btn-primary" href="\list" role="button">Go to Authors</a> </th>
+        <th scope="col"> <a class="btn btn-primary" href="post\create" role="button">Create new</a> </th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,9 @@ Posts
             <td><a href="\post\{{$post->id}}">{{$post->title}}</a></td>
             <td>{{$post->content}}</td>
             <td>{{$post->author->name}} {{$post->author->surname}}</td>
+            @foreach($post->tags as $tag)
+            <td>{{$tag->name}}</td>
+            @endforeach
         </tr>
         @endforeach
     </tbody>

@@ -14,9 +14,9 @@ Comments
     </thead>
     <tbody>
         <tr>
-            @foreach($post->comments as $comment)
             <th scope="row">{{$post->id}}</th>
             <th scope="row">{{$post->content}}</th>
+            @foreach($post->comments as $comment)
             <td>{{$comment->content}}</td>
             @endforeach
         </tr>

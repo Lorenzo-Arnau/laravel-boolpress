@@ -32,6 +32,7 @@ class PostSeeder extends Seeder
                 $newPost= new Post();
                 $newPost->title = $faker->text(50);
                 $newPost->content=$faker->text(500);
+                $newPost->pics='https://picsum.photos/seed/'.rand(0,1000).'/200/300';
 
                 $newAuthor->posts()->save($newPost);
 

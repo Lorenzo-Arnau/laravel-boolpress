@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Author;
+use App\Comment;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
 
 // ------------------------------------- necessari per mail
-use App\Mail\SendPost;
+use App\Mail\DetailsImageMail;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -58,7 +59,7 @@ class PostController extends Controller
         $newPost->save();
 
         $newPost->tags()->attach($dataToStore['tags']);
-        Mail::to('mail@mail.com')->send(new SendPost($newPost));
+        Mail::to('mail@mail.com')->send(new DetailsImageMail($newPost));
         return redirect()->route('post.index');
     }
 
@@ -102,8 +103,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+
+        foreach($post->comments as $comment){
+            $comment->delete();
+        }
+        foreach($post->tags as $tag){
+            $tag->delete();
+        }
+            $post->delete();
+            return redirect()->route('post.index');
+
     }
 }

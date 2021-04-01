@@ -10002,3 +10002,7 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.post-card {
+  margin: 40px auto;
+  box-shadow: 3px 3px 6px #000;
+}

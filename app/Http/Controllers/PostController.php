@@ -6,6 +6,11 @@ use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
 
+// ------------------------------------- necessari per mail
+use App\Mail\SendPost;
+use Illuminate\Support\Facades\Mail;
+
+
 class PostController extends Controller
 {
     /**
@@ -40,19 +45,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $path = $request->file('image')->store('public');
         $dataToStore=$request->all();
         $thisAuthor_id= $request['author_id'];
-
         if (!Author::find($thisAuthor_id)) {
             return redirect()->route('post.create');
         }
 
         $newPost=new Post();
         $newPost->fill($dataToStore);
+        $newPost->pics=$path;
         $newPost->save();
 
         $newPost->tags()->attach($dataToStore['tags']);
-
+        Mail::to('mail@mail.com')->send(new SendPost($newPost));
         return redirect()->route('post.index');
     }
 

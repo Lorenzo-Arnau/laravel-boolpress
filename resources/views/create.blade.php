@@ -3,7 +3,7 @@
 making-post
 @endsection
 @section('content')
-<form action="{{ route('post.store')}}" method="post">
+<form action="{{ route('post.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('POST')
     <div class="form-group">
@@ -22,6 +22,10 @@ making-post
     <div class="form-group">
       <label for="exampleFormControlTextarea1">Post Content</label>
       <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content"></textarea>
+    </div>
+     <div class="form-group">
+      <label for="image">Post Content</label>
+      <input type="file" class="form-control" id="image"  name="image">
     </div>
     <div class="form-group">
         <label for="tags[]">Tags</label>

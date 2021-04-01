@@ -3,6 +3,8 @@
 lists
 @endsection
 @section('content')
+
+
 <table class="table table-dark">
     <thead>
       <tr>
